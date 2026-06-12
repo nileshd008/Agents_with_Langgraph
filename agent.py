@@ -186,22 +186,3 @@ async def main():
     )
     
     return planner_agent
-
-
-def get_planner_agent():
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        
-    return loop.run_until_complete(main())
-
-def execute_agent(agent, input_messages: dict, config: dict):
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        
-    return loop.run_until_complete(agent.ainvoke(input_messages, config = config))
